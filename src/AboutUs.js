@@ -13,7 +13,7 @@ function AboutUs() {
   const [startDate, setStartDate] = useState(new Date()); // State for DatePicker
   const [endDate, setEndDate] = useState(new Date());
 
-  const client = new OpenAI({ apiKey: API_KEY, dangerouslyAllowBrowser: true });
+  const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
 
   const handleDestinationChange = (event) => {
     setDestination(event.target.value); 
