@@ -102,24 +102,24 @@ function AboutUs() {
           <label>
             When are you going?
             <DatePicker 
-                className="datepicker"
-                placeholderText='Start Date'
-                      selected={startDate}
-                      onChange={(date) => setStartDate(date)}
-                      selectsStart
-                      startDate={startDate}
-                      endDate={endDate}
-                    />
-              <DatePicker 
-                className="datepicker"
-                placeholderText='End Date'
-                      selected={endDate}
-                      onChange={(date) => setEndDate(date)}
-                      selectsEnd
-                      startDate={startDate}
-                      endDate={endDate}
-                      minDate={startDate}
-                    />
+            className="datepicker"
+            placeholderText='Start Date'
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            selectsStart
+            startDate={startDate}
+            endDate={endDate}
+            />
+            <DatePicker 
+            className="datepicker"
+            placeholderText='End Date'
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            selectsEnd
+            startDate={startDate}
+            endDate={endDate}
+            minDate={startDate}
+            />
           </label>
           <br />
           <button type="submit">Submit</button>
