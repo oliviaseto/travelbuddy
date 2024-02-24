@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import DatePicker from 'react-datepicker'; // Import DatePicker
 import 'react-datepicker/dist/react-datepicker.css'; // Import CSS for DatePicker
 import { OpenAI } from 'openai';
+import jsPDF from 'jspdf';
 
 const OPENAI_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
 function AboutUs() {
+  const [chatHistory, setChatHistory] = useState([]);
   const [destination, setDestination] = useState(""); 
   const [dates] = useState(""); 
   const [reply, setReply] = useState("");
@@ -19,28 +21,52 @@ function AboutUs() {
     setDestination(event.target.value); 
   };
 
+  const addMessage = (role, content) => {
+    setChatHistory((prevChatHistory) => [...prevChatHistory, { role, content }]);
+  };
 
   const callOpenAIAPI = async () => {
     console.log("Calling the OpenAI API");
     
     try {
+      const userQuestion = `Do I need a visa for a trip to ${destination} during ${dates}?`;
+      addMessage("user", userQuestion);
+
       const response = await client.chat.completions.create({
-        model: "gpt-4",
-        messages: [
-          {
-            role: "user",
-            content: `Do I need a visa for a trip to ${destination} during ${dates}?`
-          }
-        ],
+        model: "gpt-3.5-turbo",
+        messages: chatHistory,
         max_tokens: 100,
       });
-      const data = response.choices[0].message.content;
-      setReply(data); 
+      const data =  response.choices[0].message.content;
+      setReply(data);
+
+      addMessage("assistant", data);
     } catch (error) {
       console.error('Error:', error);
       setReply("Error occurred while fetching data. Please try again.");
     }
   };
+
+  const saveChatHistory = () => {
+    const pdfName = window.prompt('Enter PDF name (without extension):');
+
+  if (!pdfName) {
+    // User canceled or entered an empty name
+    return;
+  }
+
+  const filename = `${pdfName}.pdf`;
+
+  const pdf = new jsPDF();
+    chatHistory.forEach((message, index) => {
+    const text = `${message.role}: ${message.content}`;
+    const maxWidth = 180;
+    const lines = pdf.splitTextToSize(text, maxWidth);
+    pdf.text(lines, 10, 10 + index * 10);
+  });
+  pdf.save(filename);
+  setChatHistory([]);
+};
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -95,6 +121,7 @@ function AboutUs() {
         </form>
         {reply && <p className="reply">{reply}</p>}
       </div> 
+      <button onClick={saveChatHistory}>Save Chat History</button>
     </div>                 
   );
 }
