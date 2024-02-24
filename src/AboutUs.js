@@ -29,7 +29,7 @@ function AboutUs() {
         messages: [
           {
             role: "user",
-            content: `Do I need a visa for a trip to ${destination} during ${dates}?`
+            content: `Can you plan me a vacation itinerary for ${destination} during ${startDate} and ${endDate}?`
           }
         ],
         max_tokens: 100,
