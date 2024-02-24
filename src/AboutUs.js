@@ -8,12 +8,16 @@ const OPENAI_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
 function AboutUs() {
   const [destination, setDestination] = useState(""); 
-  const [reply, setReply] = useState("");
-  const [parsedData, setParsedData] = useState(null);
   const [startDate, setStartDate] = useState(new Date()); // State for DatePicker
   const [endDate, setEndDate] = useState(new Date());
+<<<<<<< HEAD
   const [error,setError] = useState("");
 
+=======
+  const [loading, setLoading] = useState(false);
+  const [reply, setReply] = useState("");
+  const [parsedData, setParsedData] = useState(null);
+>>>>>>> 30b9bee38005fe055a9ba835a66b6fa5fa4ed658
 
   const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
 
@@ -40,14 +44,14 @@ function AboutUs() {
     }
     console.log("Calling the OpenAI API");
     
+    setLoading(true);
+
     try {
       const response = await client.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [
-          {
-            role: "user",
-            content: `Can you plan me a vacation itinerary for ${destination} during ${startDate} and ${endDate}? Separate it by days. Include a packing guide as well for the expected weather during the intended stay.`
-          }
+          {"role": "system", "content": "You're an experienced travel advisor, well-versed in exploring the world's wonders and curating unforgettable experiences. Your expertise in understanding travel preferences and destinations allows you to craft tailored recommendation."},
+          {"role": "user", "content": `Can you plan me a vacation itinerary for ${destination} during ${startDate} and ${endDate}? Separate the itinerary by days. Include an overall packing guide for the expected weather during the intended stay, not per day.`}
         ],
         max_tokens: 1000,
       });
@@ -60,6 +64,8 @@ function AboutUs() {
     } catch (error) {
       console.error('Error:', error);
       setReply("Error occurred while fetching data. Please try again.");
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -143,6 +149,7 @@ function AboutUs() {
           <br />
           <button type="submit" className="submitbutton">Submit</button>
         </form>
+        {loading && <p>Loading...</p>}
         {parsedData && (
           <div className="parsed-data">
             <div>
