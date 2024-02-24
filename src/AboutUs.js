@@ -59,7 +59,7 @@ function AboutUs() {
           </div>
       </div>
       <div className="chat">
-        <form onSubmit={handleSubmit}>
+        <form className="input-form" onSubmit={handleSubmit}>
           <label>
               Where are you traveling to?
               <input
@@ -74,21 +74,25 @@ function AboutUs() {
           <br />
           <label>
               When are you going?
-              <DatePicker
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-        selectsStart
-        startDate={startDate}
-        endDate={endDate}
-      />
-            <DatePicker
-        selected={endDate}
-        onChange={(date) => setEndDate(date)}
-        selectsEnd
-        startDate={startDate}
-        endDate={endDate}
-        minDate={startDate}
-      />
+              <DatePicker 
+                className="datepicker"
+                placeholderText='Start Date'
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                selectsStart
+                startDate={startDate}
+                endDate={endDate}
+              />
+              <DatePicker 
+                className="datepicker"
+                placeholderText='End Date'
+                selected={startDate}
+                onChange={(date) => setEndDate(date)}
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate}
+              />
           </label>
           <br />
           <button type="submit">Submit</button> {/* Corrected button type */}
