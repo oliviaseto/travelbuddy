@@ -44,6 +44,9 @@ function AboutUs() {
                 onChange={handleDatesChange}
             />
           </label>
+          <br></br>
+          <button class="submitbutton">Submit</button>
+
         </form>
         </div> 
         </div>             
