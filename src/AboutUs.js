@@ -11,20 +11,37 @@ function AboutUs() {
   const [reply, setReply] = useState("");
   const [startDate, setStartDate] = useState(new Date()); // State for DatePicker
   const [endDate, setEndDate] = useState(new Date());
+  const [error,setError] = useState("");
+
 
   const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
 
   const handleDestinationChange = (event) => {
     setDestination(event.target.value); 
   };
-
+  const validateDestination = () => {
+    // You can implement your validation logic here
+    // For example, check if the destination is in a predefined list of valid destinations
+    if (!destination|| destination.trim() === "") {
+      setError("Please input a valid destination"); // Set error message if the destination is not valid
+      setReply("");
+      return false;
+    } else {
+      setError(""); // Reset error message if the destination is not valid
+      return true;
+    }
+  };
+  
 
   const callOpenAIAPI = async () => {
+    if (!validateDestination()) {
+      return; // Exit the function if the destination is not valid
+    }
     console.log("Calling the OpenAI API");
     
     try {
       const response = await client.chat.completions.create({
-        model: "gpt-4",
+        model: "gpt-3.5-turbo",
         messages: [
           {
             role: "user",
@@ -43,6 +60,7 @@ function AboutUs() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     await callOpenAIAPI(); 
   };
 
@@ -70,6 +88,7 @@ function AboutUs() {
                   onChange={handleDestinationChange}
               />
           </label>
+          {error && <p className="error-message">{error}</p>} {/* Display error message if the destination is not valid */}
           <br />
           <label>
               When are you going?
