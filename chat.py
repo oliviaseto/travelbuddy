@@ -4,7 +4,7 @@ def ask_chat(location, dates):
     #request = "Create a short itinerary for a trip to " + location + " during " + dates
     request = "Do I need a visa for a trip to " + location + " during " + dates
     client = OpenAI(
-        api_key="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",
+        api_key="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",
     )
 
     completion = client.chat.completions.create(
