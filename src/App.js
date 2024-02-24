@@ -73,8 +73,6 @@ function App() {
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * backgroundImages.length);
-    console.log('Random Index:', randomIndex);
-    console.log('Selected Image:', backgroundImages[randomIndex]);
     setCurrentBackgroundIndex(randomIndex);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -87,7 +85,7 @@ function App() {
         <div className="fade-in" > Welcome to TravelBuddy! </div>
         <button className="aboutusbutton fade-in" onClick={() => scrollTo('aboutUs')}>Get Started</button>
       </header>
-      <div id='aboutUs' className="About fade-in">
+      <div id='aboutUs' className="About">
         <AboutUs></AboutUs>
       </div>
     </div>
