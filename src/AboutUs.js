@@ -29,20 +29,22 @@ function AboutUs() {
     console.log("Calling the OpenAI API");
     
     try {
-      const userQuestion = `Do I need a visa for a trip to ${destination} during ${dates}?`;
+      const userQuestion = `Can you plan me a vacation itinerary for ${destination} during ${startDate} and ${endDate}? Separate it by days. Include a packing guide as well for the expected weather during the intended stay.`;
+
       addMessage("user", userQuestion);
 
       const response = await client.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: chatHistory,
-        max_tokens: 100,
+        max_tokens: 1000,
       });
       const data = response.choices[0].message.content;
       setReply(data); 
       console.log(data);
       const parsedData = parseItineraryAndPackingGuide(data);
       setParsedData(parsedData);
-      console.log(parsedData)
+      console.log(parsedData);
+      addMessage("assistant", data);
     } catch (error) {
       console.error('Error:', error);
       setReply("Error occurred while fetching data. Please try again.");
@@ -163,7 +165,9 @@ function AboutUs() {
             </div>
           </div>
         )}  
+        {reply && <p className="reply">{reply}</p>}
       </div>
+      <button onClick={saveChatHistory}>Download Chat History</button>
     </div>
   );  
 }
