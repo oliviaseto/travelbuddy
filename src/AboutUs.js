@@ -16,20 +16,27 @@ function AboutUs() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch('/api/chat', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-          destination: destination,
-          dates: dates
-      })
-    }); 
-    const data = response;
-    console.log("data:",data)
-    console.log(data.reply);
-    setReply(data.reply);
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*' 
+        },
+        body: JSON.stringify({
+            destination: destination,
+            dates: dates
+        })
+      }); 
+
+      // const data = await response.json(); // Parse response as JSON
+      const data = response
+      console.log("data: ", data);
+      console.log(data.reply);
+      setReply(data.reply);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
