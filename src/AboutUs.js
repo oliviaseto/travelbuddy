@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker'; // Import DatePicker
 import 'react-datepicker/dist/react-datepicker.css'; // Import CSS for DatePicker
 import { OpenAI } from 'openai';
 
-const API_KEY = "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";
+const OPENAI_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
 function AboutUs() {
   const [destination, setDestination] = useState(""); 
