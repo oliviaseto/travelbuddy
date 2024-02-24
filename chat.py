@@ -1,10 +1,10 @@
 from openai import OpenAI
 
-def ask_chat(location, dates):
+def ask_chat(destination, dates):
     #request = "Create a short itinerary for a trip to " + location + " during " + dates
-    request = "Do I need a visa for a trip to " + location + " during " + dates
+    request = "Do I need a visa for a trip to " + destination + " during " + dates
     client = OpenAI(
-        api_key="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",
+        api_key="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",
     )
 
     completion = client.chat.completions.create(
@@ -21,4 +21,4 @@ def ask_chat(location, dates):
     print("total tokens used: ", tokens)
     return model_reply
 
-print(ask_chat("Japan", "Feb 29 to March 10"))
+# print(ask_chat("Japan", "Feb 29 to March 10"))

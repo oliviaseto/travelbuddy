@@ -2,8 +2,9 @@ import './AboutUs.css';
 import React, { useState } from 'react';
 
 function AboutUs() {
-    const [destination, setDestination] = useState(""); 
+  const [destination, setDestination] = useState(""); 
   const [dates, setDates] = useState(""); 
+  const [reply, setReply] = useState("");
 
   const handleDestinationChange = (event) => {
     setDestination(event.target.value); 
@@ -12,46 +13,62 @@ function AboutUs() {
   const handleDatesChange = (event) => {
     setDates(event.target.value); 
   }; 
-    return (
-        <div className="AboutUs">
-            <div className="About-content">
-                <h1>About Us</h1>
-                <p> Traveling soon? Input your destination and dates and we will give you a personalized itinerary! </p>
-                
-            </div>
-        <div className="chat">
-        <form>
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          destination: destination,
+          dates: dates
+      })
+    }); 
+    const data = response;
+    console.log("data:",data)
+    console.log(data.reply);
+    setReply(data.reply);
+  };
+
+  return (
+    <div className="AboutUs">
+      <div className="About-content">
+          <h1>About Us</h1>
+          <p> Traveling soon? Input your destination and dates and we will give you a personalized itinerary! </p>
+      </div>
+      <div className="chat">
+        <form onSubmit={handleSubmit}>
           <label>
-            Where are you traveling to?
-            <input
-                className='destination_input'
-                type='text'
-                name='destination'
-                placeholder=''
-                value={destination}
-                onChange={handleDestinationChange}
-            />
+              Where are you traveling to?
+              <input
+                  className='destination_input'
+                  type='text'
+                  name='destination'
+                  placeholder=''
+                  value={destination}
+                  onChange={handleDestinationChange}
+              />
           </label>
           <br />
           <label>
-            When are you going?
-            <input
-                className='dates_input'
-                type='text'
-                name='dates'
-                placeholder=''
-                value={dates}
-                onChange={handleDatesChange}
-            />
+              When are you going?
+              <input
+                  className='dates_input'
+                  type='text'
+                  name='dates'
+                  placeholder=''
+                  value={dates}
+                  onChange={handleDatesChange}
+              />
           </label>
-          <br></br>
-          <button class="submitbutton">Submit</button>
-
-        </form>
-        </div> 
-        </div>             
-            
-    );
-
+          <br />
+          <button type="submitbutton">Submit</button>
+      </form>
+      {reply && <p className="reply">{reply}</p>}
+    </div> 
+  </div>                 
+  );
 }
 export default AboutUs;
