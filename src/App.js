@@ -1,24 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import AboutUs from './AboutUs';
+import React, { useState } from 'react';
+
 
 function App() {
+
+  const[onClick,setOnClick]=useState(false);
+
+  const scrollTo = (sectionId) => {
+    const target = document.getElementById(sectionId);
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop,
+         behavior: 'smooth',
+      });
+    }
+    setOnClick(!onClick); // Toggle the state to close the menu (if it's open)  
+  };    
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header id='main' className="App-header">
+        <div> Welcome to TravelBuddy! </div>
+        <button onClick={() => scrollTo('aboutUs')}>About Us</button>
       </header>
-    </div>
+      <div id='aboutUs' className="About">
+        <div>
+          <h1>About Me</h1>
+            </div>
+              <AboutUs></AboutUs>
+            </div>
+        </div>
   );
 }
 
