@@ -122,7 +122,7 @@ function AboutUs() {
             />
           </label>
           <br />
-          <button type="submit">Submit</button>
+          <button type="submit" className="submitbutton">Submit</button>
         </form>
         {parsedData && (
           <div className="parsed-data">
