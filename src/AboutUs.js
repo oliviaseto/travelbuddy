@@ -1,22 +1,24 @@
 import './AboutUs.css';
 import React, { useState } from 'react';
+import DatePicker from 'react-datepicker'; // Import DatePicker
+import 'react-datepicker/dist/react-datepicker.css'; // Import CSS for DatePicker
 import { OpenAI } from 'openai';
 
-const API_KEY = "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";
+const API_KEY = "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";
 
 function AboutUs() {
   const [destination, setDestination] = useState(""); 
-  const [dates, setDates] = useState(""); 
+  const [dates] = useState(""); 
   const [reply, setReply] = useState("");
+  const [startDate, setStartDate] = useState(new Date()); // State for DatePicker
+  const [endDate, setEndDate] = useState(new Date());
+
   const client = new OpenAI({ apiKey: API_KEY, dangerouslyAllowBrowser: true });
 
   const handleDestinationChange = (event) => {
     setDestination(event.target.value); 
   };
 
-  const handleDatesChange = (event) => {
-    setDates(event.target.value); 
-  }; 
 
   const callOpenAIAPI = async () => {
     console.log("Calling the OpenAI API");
@@ -72,14 +74,21 @@ function AboutUs() {
           <br />
           <label>
               When are you going?
-              <input
-                  className='dates_input'
-                  type='text'
-                  name='dates'
-                  placeholder=''
-                  value={dates}
-                  onChange={handleDatesChange}
-              />
+              <DatePicker
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+        selectsStart
+        startDate={startDate}
+        endDate={endDate}
+      />
+            <DatePicker
+        selected={endDate}
+        onChange={(date) => setEndDate(date)}
+        selectsEnd
+        startDate={startDate}
+        endDate={endDate}
+        minDate={startDate}
+      />
           </label>
           <br />
           <button type="submit">Submit</button> {/* Corrected button type */}
