@@ -1,52 +1,69 @@
-import React, { useEffect } from 'react';
+import logo from './logo.svg';
 import './App.css';
+import AboutUs from './AboutUs';
+import React, { useState } from 'react';
 
 function App() {
-  useEffect(() => {
-    const faders = document.querySelectorAll('.fade-in');
-    const appearOptions = {
-      threshold: 0.5,
-    };
 
-    const appearOnScroll = new IntersectionObserver((entries, appearOnScroll) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) {
-          return;
-        } else {
-          entry.target.classList.add('appear');
-          appearOnScroll.unobserve(entry.target);
-        }
+  const[onClick,setOnClick]=useState(false);
+
+  const scrollTo = (sectionId) => {
+    const target = document.getElementById(sectionId);
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop,
+         behavior: 'smooth',
       });
-    }, appearOptions);
+    }
+    setOnClick(!onClick); // Toggle the state to close the menu (if it's open)  
+  };   
+  const [destination, setDestination] = useState(""); 
+  const [dates, setDates] = useState(""); 
 
-    faders.forEach(fader => {
-      appearOnScroll.observe(fader);
-    });
+  const handleDestinationChange = (event) => {
+    setDestination(event.target.value); 
+  };
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY === 0) {
-        faders.forEach(fader => {
-          fader.classList.remove('appear');
-          appearOnScroll.observe(fader);
-        });
-      }
-    });
+  const handleDatesChange = (event) => {
+    setDates(event.target.value); 
+  }; 
 
-    // Cleanup function to disconnect the IntersectionObserver when the component unmounts
-    return () => {
-      faders.forEach(fader => appearOnScroll.unobserve(fader));
-      window.removeEventListener('scroll', () => {});
-    };
-  }, []); 
-  
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>
-          Welcome to TravelBuddy
-        </h1>
+      <header id='main' className="App-header">
+        <div> Welcome to TravelBuddy! </div>
+        <button class="aboutusbutton" onClick={() => scrollTo('aboutUs')}>About Us</button>
       </header>
-    </div>
+      <div id='aboutUs' className="About">
+        <AboutUs></AboutUs>
+      </div>
+
+        <form>
+          <label>
+            Where are you traveling to?
+            <input
+                className='destination_input'
+                type='text'
+                name='destination'
+                placeholder=''
+                value={destination}
+                onChange={handleDestinationChange}
+            />
+          </label>
+          <br />
+          <label>
+            When are you going?
+            <input
+                className='dates_input'
+                type='text'
+                name='dates'
+                placeholder=''
+                value={dates}
+                onChange={handleDatesChange}
+            />
+          </label>
+        </form>
+        </div>
   );
 }
 
