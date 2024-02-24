@@ -25,7 +25,7 @@ function AboutUs() {
     // For example, check if the destination is in a predefined list of valid destinations
     if (!destination|| destination.trim() === "") {
       setError("Please input a valid destination"); // Set error message if the destination is not valid
-      setReply("");
+      setParsedData(null);
       return false;
     } else {
       setError(""); // Reset error message if the destination is not valid
