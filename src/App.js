@@ -42,6 +42,19 @@ function useFadeInEffect() {
 }
 
 function App() {
+  const backgroundImages = [
+    "images/greece1.png",
+    "images/greece2.png",
+    'images/beijing.png',
+    'images/china.png',
+    'images/autumn1.jpg',
+    'images/korea.jpg',
+    'images/lake.jpg',
+    'images/lake2.png',
+    'images/newyork.png',
+    'images/savannah.png',
+    'images/winter1.jpg'
+  ];
 
   const[onClick,setOnClick]=useState(false);
 
@@ -65,14 +78,23 @@ function App() {
   // const handleDatesChange = (event) => {
   //   setDates(event.target.value); 
   // }; 
+  const [currentBackgroundIndex, setCurrentBackgroundIndex] = useState(0);
+
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * backgroundImages.length);
+    console.log('Random Index:', randomIndex);
+    console.log('Selected Image:', backgroundImages[randomIndex]);
+    setCurrentBackgroundIndex(randomIndex);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useFadeInEffect();
 
   return (
     <div className="App">
-      <header id='main' className="App-header">
+      <header id='main' className="App-header" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${backgroundImages[currentBackgroundIndex]})` }}>
         <div className="fade-in" > Welcome to TravelBuddy! </div>
-        <button class="aboutusbutton fade-in" onClick={() => scrollTo('aboutUs')}>About Us</button>
+        <button className="aboutusbutton fade-in" onClick={() => scrollTo('aboutUs')}>About Us</button>
       </header>
       <div id='aboutUs' className="About fade-in">
         <AboutUs></AboutUs>
