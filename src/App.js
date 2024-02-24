@@ -43,17 +43,17 @@ function useFadeInEffect() {
 
 function App() {
   const backgroundImages = [
-    '/public/images/greece1.png',
-    '/public/images/greece2.png',
-    '/public/images/beijing.png',
-    '/public/images/china.png',
-    '/public/images/autumn1.png',
-    '/public/images/korea.jpg',
-    '/public/images/lake.jpg',
-    '/public/images/lake2.png',
-    '/public/images/newyork.png',
-    '/public/images/savannah.png',
-    '/public/images/winter1.jpg'
+    "images/greece1.png",
+    "images/greece2.png",
+    'images/beijing.png',
+    'images/china.png',
+    'images/autumn1.jpg',
+    'images/korea.jpg',
+    'images/lake.jpg',
+    'images/lake2.png',
+    'images/newyork.png',
+    'images/savannah.png',
+    'images/winter1.jpg'
   ];
 
   const[onClick,setOnClick]=useState(false);
@@ -85,13 +85,14 @@ function App() {
     console.log('Random Index:', randomIndex);
     console.log('Selected Image:', backgroundImages[randomIndex]);
     setCurrentBackgroundIndex(randomIndex);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useFadeInEffect();
 
   return (
-    <div className="App" style={{ backgroundImage: `url(${backgroundImages[currentBackgroundIndex]})` }}>
-      <header id='main' className="App-header">
+    <div className="App">
+      <header id='main' className="App-header" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${backgroundImages[currentBackgroundIndex]})` }}>
         <div className="fade-in" > Welcome to TravelBuddy! </div>
         <button className="aboutusbutton fade-in" onClick={() => scrollTo('aboutUs')}>About Us</button>
       </header>
