@@ -1,5 +1,5 @@
 .AboutUs {
-    background-image: url("ContinentMap.png");
+    background-image: url("/public/images/ContinentMap.png");
     /* background-size: 1300px 2000px; */
     background-size: 100% 100%; 
     background-position: center; /* Center the background image */
