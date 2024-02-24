@@ -17,8 +17,10 @@
 
 
 .About-content {
+    margin-top:-110vh;
     color:black;
-    margin-bottom: auto;
+    position: absolute;
+
 }
 
 .text-container {

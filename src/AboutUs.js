@@ -10,24 +10,47 @@ const OPENAI_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 function AboutUs() {
   const [chatHistory, setChatHistory] = useState([]);
   const [destination, setDestination] = useState(""); 
-  const [reply, setReply] = useState("");
-  const [parsedData, setParsedData] = useState(null);
   const [startDate, setStartDate] = useState(new Date()); // State for DatePicker
   const [endDate, setEndDate] = useState(new Date());
+<<<<<<< HEAD
+  const [error,setError] = useState("");
+
+=======
+  const [loading, setLoading] = useState(false);
+  const [reply, setReply] = useState("");
+  const [parsedData, setParsedData] = useState(null);
+>>>>>>> 30b9bee38005fe055a9ba835a66b6fa5fa4ed658
 
   const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
 
   const handleDestinationChange = (event) => {
     setDestination(event.target.value); 
   };
-
+  const validateDestination = () => {
+    // You can implement your validation logic here
+    // For example, check if the destination is in a predefined list of valid destinations
+    if (!destination|| destination.trim() === "") {
+      setError("Please input a valid destination"); // Set error message if the destination is not valid
+      setParsedData(null);
+      return false;
+    } else {
+      setError(""); // Reset error message if the destination is not valid
+      return true;
+    }
+  };
+  
   const addMessage = (role, content) => {
     setChatHistory((prevChatHistory) => [...prevChatHistory, { role, content }]);
   };
 
   const callOpenAIAPI = async () => {
+    if (!validateDestination()) {
+      return; // Exit the function if the destination is not valid
+    }
     console.log("Calling the OpenAI API");
     
+    setLoading(true);
+
     try {
       const userQuestion = `Can you plan me a vacation itinerary for ${destination} during ${startDate} and ${endDate}? Separate it by days. Include a packing guide as well for the expected weather during the intended stay.`;
 
@@ -48,6 +71,8 @@ function AboutUs() {
     } catch (error) {
       console.error('Error:', error);
       setReply("Error occurred while fetching data. Please try again.");
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -74,6 +99,7 @@ function AboutUs() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     await callOpenAIAPI(); 
   };
 
@@ -124,6 +150,7 @@ function AboutUs() {
               onChange={handleDestinationChange}
             />
           </label>
+          {error && <p className="error-message">{error}</p>} {/* Display error message if the destination is not valid */}
           <br />
           <label>
             When are you going?
@@ -150,6 +177,7 @@ function AboutUs() {
           <br />
           <button type="submit" className="submitbutton">Submit</button>
         </form>
+        {loading && <p>Loading...</p>}
         {parsedData && (
           <div className="parsed-data">
             <div>
