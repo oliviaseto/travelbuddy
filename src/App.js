@@ -16,16 +16,16 @@ function App() {
     }
     setOnClick(!onClick); // Toggle the state to close the menu (if it's open)  
   };   
-  const [destination, setDestination] = useState(""); 
-  const [dates, setDates] = useState(""); 
+  // const [destination, setDestination] = useState(""); 
+  // const [dates, setDates] = useState(""); 
 
-  const handleDestinationChange = (event) => {
-    setDestination(event.target.value); 
-  };
+  // const handleDestinationChange = (event) => {
+  //   setDestination(event.target.value); 
+  // };
 
-  const handleDatesChange = (event) => {
-    setDates(event.target.value); 
-  }; 
+  // const handleDatesChange = (event) => {
+  //   setDates(event.target.value); 
+  // }; 
 
   return (
     <div className="App">
@@ -37,7 +37,7 @@ function App() {
         <AboutUs></AboutUs>
       </div>
 
-        <form>
+        {/* <form>
           <label>
             Where are you traveling to?
             <input
@@ -61,7 +61,7 @@ function App() {
                 onChange={handleDatesChange}
             />
           </label>
-        </form>
+        </form> */}
         </div>
   );
 }

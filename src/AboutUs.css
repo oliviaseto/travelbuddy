@@ -8,6 +8,11 @@
     font-size: calc(10px + 2vmin);
     color: white;
   }
-.AboutUs h1{
+.About-content {
     color:pink;
+    margin-bottom: auto;
+}
+.chat{
+    color: orange;
+    margin-top:auto;
 }
