@@ -1,11 +1,14 @@
 import './AboutUs.css';
 import React, { useState } from 'react';
-import axios from 'axios'; 
+import { OpenAI } from 'openai';
+
+const API_KEY = "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";
 
 function AboutUs() {
   const [destination, setDestination] = useState(""); 
   const [dates, setDates] = useState(""); 
   const [reply, setReply] = useState("");
+  const client = new OpenAI({ apiKey: API_KEY, dangerouslyAllowBrowser: true });
 
   const handleDestinationChange = (event) => {
     setDestination(event.target.value); 
@@ -15,21 +18,31 @@ function AboutUs() {
     setDates(event.target.value); 
   }; 
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const callOpenAIAPI = async () => {
+    console.log("Calling the OpenAI API");
+    
     try {
-      const response = await axios.post('/api/chat', {
-        destination: destination,
-        dates: dates
+      const response = await client.chat.completions.create({
+        model: "gpt-4",
+        messages: [
+          {
+            role: "user",
+            content: `Do I need a visa for a trip to ${destination} during ${dates}?`
+          }
+        ],
+        max_tokens: 100,
       });
-      console.log("response: ", response);
-      const data = response.data; 
-      console.log("response data: ", data);
-      console.log(data.reply);
-      setReply(data.reply);
+      const data = response.choices[0].message.content;
+      setReply(data); 
     } catch (error) {
       console.error('Error:', error);
+      setReply("Error occurred while fetching data. Please try again.");
     }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await callOpenAIAPI(); 
   };
 
   return (
@@ -41,7 +54,6 @@ function AboutUs() {
             <p className="right-text">Presenting, your own <br></br>personal travel itinerary planner, <br></br>powered by AI.</p>
             <p className="left-text">To get started, please enter your <br></br>destination, as well as your vacation dates.</p>
             <p className="right-text">We will generate a customized itinerary,<br></br> packing guide, estimated costs, etc.<br></br> as you continue to tell us your vacation <br></br>desires.</p>
-
           </div>
       </div>
       <div className="chat">
@@ -70,11 +82,11 @@ function AboutUs() {
               />
           </label>
           <br />
-          <button type="submitbutton">Submit</button>
-      </form>
-      {reply && <p className="reply">{reply}</p>}
-    </div> 
-  </div>                 
+          <button type="submit">Submit</button> {/* Corrected button type */}
+        </form>
+        {reply && <p className="reply">{reply}</p>}
+      </div> 
+    </div>                 
   );
 }
 export default AboutUs;
