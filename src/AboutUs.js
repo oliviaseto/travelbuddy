@@ -8,7 +8,6 @@ const OPENAI_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
 function AboutUs() {
   const [destination, setDestination] = useState(""); 
-  const [dates] = useState(""); 
   const [reply, setReply] = useState("");
   const [startDate, setStartDate] = useState(new Date()); // State for DatePicker
   const [endDate, setEndDate] = useState(new Date());
