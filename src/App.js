@@ -85,7 +85,7 @@ function App() {
     <div className="App">
       <header id='main' className="App-header" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${backgroundImages[currentBackgroundIndex]})` }}>
         <div className="fade-in" > Welcome to TravelBuddy! </div>
-        <button className="aboutusbutton fade-in" onClick={() => scrollTo('aboutUs')}>About Us</button>
+        <button className="aboutusbutton fade-in" onClick={() => scrollTo('aboutUs')}>Get Started</button>
       </header>
       <div id='aboutUs' className="About fade-in">
         <AboutUs></AboutUs>

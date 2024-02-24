@@ -36,7 +36,13 @@ function AboutUs() {
     <div className="AboutUs">
       <div className="About-content">
           <h1>About Us</h1>
-          <p> Traveling soon? Input your destination and dates and we will give you a personalized itinerary! </p>
+          <div className ="text-container">
+            <p className="left-text">Traveling soon? Don't have time <br></br>to plan an itinerary?</p>
+            <p className="right-text">Presenting, your own <br></br>personal travel itinerary planner, <br></br>powered by AI.</p>
+            <p className="left-text">To get started, please enter your <br></br>destination, as well as your vacation dates.</p>
+            <p className="right-text">We will generate a customized itinerary,<br></br> packing guide, estimated costs, etc.<br></br> as you continue to tell us your vacation <br></br>desires.</p>
+
+          </div>
       </div>
       <div className="chat">
         <form onSubmit={handleSubmit}>
