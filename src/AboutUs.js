@@ -1,5 +1,6 @@
 import './AboutUs.css';
 import React, { useState } from 'react';
+import axios from 'axios'; 
 
 function AboutUs() {
   const [destination, setDestination] = useState(""); 
@@ -17,21 +18,13 @@ function AboutUs() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*' 
-        },
-        body: JSON.stringify({
-            destination: destination,
-            dates: dates
-        })
-      }); 
-
-      // const data = await response.json(); // Parse response as JSON
-      const data = response
-      console.log("data: ", data);
+      const response = await axios.post('/api/chat', {
+        destination: destination,
+        dates: dates
+      });
+      console.log("response: ", response);
+      const data = response.data; 
+      console.log("response data: ", data);
       console.log(data.reply);
       setReply(data.reply);
     } catch (error) {
