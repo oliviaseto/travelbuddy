@@ -31,14 +31,11 @@ function App() {
     <div className="App">
       <header id='main' className="App-header">
         <div> Welcome to TravelBuddy! </div>
-        <button onClick={() => scrollTo('aboutUs')}>About Us</button>
+        <button class="aboutusbutton" onClick={() => scrollTo('aboutUs')}>About Us</button>
       </header>
       <div id='aboutUs' className="About">
-        <div>
-          <h1>About Me</h1>
-        </div>
         <AboutUs></AboutUs>
-        </div>
+      </div>
 
         <form>
           <label>
