@@ -2,13 +2,13 @@ import './AboutUs.css';
 import React, { useState } from 'react';
 import { OpenAI } from 'openai';
 
-const API_KEY = "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";
+const OPENAI_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
 function AboutUs() {
   const [destination, setDestination] = useState(""); 
   const [dates, setDates] = useState(""); 
   const [reply, setReply] = useState("");
-  const client = new OpenAI({ apiKey: API_KEY, dangerouslyAllowBrowser: true });
+  const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
 
   const handleDestinationChange = (event) => {
     setDestination(event.target.value); 
