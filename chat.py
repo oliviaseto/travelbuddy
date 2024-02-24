@@ -1,8 +1,8 @@
 from openai import OpenAI
 
 def ask_chat(location, dates):
-    request = "Create a short itinerary for a trip to " + location + " during " + dates
-
+    #request = "Create a short itinerary for a trip to " + location + " during " + dates
+    request = "Do I need a visa for a trip to " + location + " during " + dates
     client = OpenAI(
         api_key="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",
     )
