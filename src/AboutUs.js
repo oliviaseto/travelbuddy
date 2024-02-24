@@ -12,14 +12,11 @@ function AboutUs() {
   const [destination, setDestination] = useState(""); 
   const [startDate, setStartDate] = useState(new Date()); // State for DatePicker
   const [endDate, setEndDate] = useState(new Date());
-<<<<<<< HEAD
   const [error,setError] = useState("");
 
-=======
   const [loading, setLoading] = useState(false);
   const [reply, setReply] = useState("");
   const [parsedData, setParsedData] = useState(null);
->>>>>>> 30b9bee38005fe055a9ba835a66b6fa5fa4ed658
 
   const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
 
@@ -52,10 +49,10 @@ function AboutUs() {
     setLoading(true);
 
     try {
-      const userQuestion = `Can you plan me a vacation itinerary for ${destination} during ${startDate} and ${endDate}? Separate it by days. Include a packing guide as well for the expected weather during the intended stay.`;
+      //const userQuestion = `Can you plan me a vacation itinerary for ${destination} during ${startDate} and ${endDate}? Separate it by days. Include a packing guide as well for the expected weather during the intended stay.`;
 
-      addMessage("user", userQuestion);
-
+      addMessage("user", "You're an experienced travel advisor, well-versed in exploring the world's wonders and curating unforgettable experiences. Your expertise in understanding travel preferences and destinations allows you to craft tailored recommendation.");
+      addMessage("user", "You're an experienced travel advisor, well-versed in exploring the world's wonders and curating unforgettable experiences. Your expertise in understanding travel preferences and destinations allows you to craft tailored recommendation.");
       const response = await client.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: chatHistory,
