@@ -10,14 +10,11 @@ function AboutUs() {
   const [destination, setDestination] = useState(""); 
   const [startDate, setStartDate] = useState(new Date()); // State for DatePicker
   const [endDate, setEndDate] = useState(new Date());
-<<<<<<< HEAD
   const [error,setError] = useState("");
 
-=======
   const [loading, setLoading] = useState(false);
-  const [reply, setReply] = useState("");
+  const [reply,setReply] = useState("");
   const [parsedData, setParsedData] = useState(null);
->>>>>>> 30b9bee38005fe055a9ba835a66b6fa5fa4ed658
 
   const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
 
