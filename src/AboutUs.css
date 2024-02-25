@@ -1,22 +1,28 @@
+/* Add this to your AboutUs.css or create a new CSS file */
+/* Customize the scrollbar */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 12px; /* Set the width of the scrollbar */
   border-radius: 8px;
 }
 
+/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #707e56;
+  background: #778061;
 }
 
+/* Handle on drag */
 ::-webkit-scrollbar-thumb:active {
-  background: #707e56;
+  background: #778061;
 }
 
+/* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
+/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #7d8e63;
+  background: #90ac74;
   border-radius: 8px;
 }
 
