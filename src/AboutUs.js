@@ -1,23 +1,59 @@
 import './AboutUs.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker'; // Import DatePicker
 import 'react-datepicker/dist/react-datepicker.css'; // Import CSS for DatePicker
 import { OpenAI } from 'openai';
 
 const OPENAI_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
+function useFadeInEffect() {
+  useEffect(() => {
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = {
+      threshold: 0.5,
+    };
+
+    const appearOnScroll = new IntersectionObserver((entries, appearOnScroll) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          return;
+        } else {
+          entry.target.classList.add('appear');
+          appearOnScroll.unobserve(entry.target);
+        }
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY === 0) {
+        faders.forEach(fader => {
+          fader.classList.remove('appear');
+          appearOnScroll.observe(fader);
+        });
+      }
+    });
+
+    // Cleanup function to disconnect the IntersectionObserver when the component unmounts
+    return () => {
+      faders.forEach(fader => appearOnScroll.unobserve(fader));
+      window.removeEventListener('scroll', () => {});
+    };
+  }, []); 
+}
+
 function AboutUs() {
   const [destination, setDestination] = useState(""); 
   const [startDate, setStartDate] = useState(new Date()); // State for DatePicker
   const [endDate, setEndDate] = useState(new Date());
-<<<<<<< HEAD
   const [error,setError] = useState("");
 
-=======
   const [loading, setLoading] = useState(false);
   const [reply, setReply] = useState("");
   const [parsedData, setParsedData] = useState(null);
->>>>>>> 30b9bee38005fe055a9ba835a66b6fa5fa4ed658
 
   const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
 
@@ -98,15 +134,17 @@ function AboutUs() {
     return { itinerary, packingGuide };
   };
 
+  useFadeInEffect();
+
   return (
     <div className="AboutUs">
       <div className="About-content">
         <h1>About Us</h1>
         <div className="text-container">
-          <p className="left-text">Traveling soon? Don't have time <br />to plan an itinerary?</p>
-          <p className="right-text">Presenting, your own <br />personal travel itinerary planner, <br />powered by AI.</p>
-          <p className="left-text">To get started, please enter your <br />destination, as well as your vacation dates.</p>
-          <p className="right-text">We will generate a customized itinerary,<br />packing guide, estimated costs, etc.<br />as you continue to tell us your vacation <br />desires.</p>
+          <p className="left-text fade-in">Traveling soon? Don't have time <br />to plan an itinerary?</p>
+          <p className="right-text fade-in">Presenting, your own <br />personal travel itinerary planner, <br />powered by AI.</p>
+          <p className="left-text fade-in">To get started, please enter your <br />destination, as well as your vacation dates.</p>
+          <p className="right-text no-margin fade-in">We will generate a customized itinerary,<br />packing guide, estimated costs, etc.<br />as you continue to tell us your vacation <br />desires.</p>
         </div>
       </div>
       <div className="chat">
