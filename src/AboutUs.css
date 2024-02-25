@@ -19,6 +19,19 @@
   border-radius: 8px;
 }
 
+.remove-scroll-container {
+  overflow: scroll; 
+}
+
+.remove-scroll-container::-webkit-scrollbar {
+  width: 0; 
+  height: 0; 
+}
+
+.remove-scroll-container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
 .AboutUs {
   background-image: url("/public/images/ContinentMap.png");
   /* background-size: 1300px 2000px; */

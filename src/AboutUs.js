@@ -218,7 +218,7 @@ function AboutUs() {
 
   return (
     <Parallax pages={2}>
-    <div className="AboutUs">
+    <div className="AboutUs remove-scroll-container">
       
         {/* <ParallaxLayer offset={0}> */}
         <div className="About-content">
@@ -242,7 +242,7 @@ function AboutUs() {
         </div>
       <ParallaxLayer offset={1.2}>
       <div className="chat">
-        <div className="chat-container">
+        <div className="chat-container remove-scroll-container">
           <form className="input-form" onSubmit={handleSubmit}>
             <label>
               <div>Where are you traveling to?</div>
