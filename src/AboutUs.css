@@ -1,3 +1,6 @@
+
+
+
 .AboutUs {
   background-image: url("/public/images/ContinentMap.png");
   /* background-size: 1300px 2000px; */
@@ -13,10 +16,14 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
 }
 
 .About-content {
-  margin-top:-110vh;
+  margin-top:-70vh;
   color:black;
   position: absolute;
 }
@@ -33,13 +40,19 @@
 .left-text {
   text-align: left;
   padding-left: 20px;
+  margin-bottom: 100px;
   order: 1; /* Start with left-aligned paragraphs */
 }
   
 .right-text {
   text-align: right;
   padding-right: 20px;
+  margin-bottom: 100px;
   order: 2; /* Start with right-aligned paragraphs */
+}
+
+.no-margin {
+  margin-bottom: 20px;
 }
   
 /* Alternate alignment for paragraphs */
@@ -96,3 +109,12 @@
   box-sizing: border-box;
 }
 
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.appear{
+  opacity: 1;
+}

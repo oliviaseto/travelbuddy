@@ -85,9 +85,6 @@ function App() {
         <div className="fade-in" > Welcome to TravelBuddy! </div>
         <button className="aboutusbutton fade-in" onClick={() => scrollTo('aboutUs')}>Get Started</button>
       </header>
-      <div id='aboutUs' className="About">
-        <AboutUs></AboutUs>
-      </div>
     </div>
   );
 }
