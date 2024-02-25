@@ -213,6 +213,13 @@ function AboutUs() {
     setPreviousResponses(updatedResponses);
   };
 
+  const handleScroll = async (event) => {
+    const { scrollTop, clientHeight, scrollHeight } = event.target;
+    if (scrollHeight - scrollTop === clientHeight) {
+      console.log('Load more content');
+    }
+  };
+
   useFadeInEffect();
 
   return (
@@ -220,7 +227,6 @@ function AboutUs() {
       <Parallax pages={7}>
         <ParallaxLayer offset={0}>
         <div className="About-content">
-
           <h1>About Us</h1>
         </div>
         </ParallaxLayer>
@@ -240,89 +246,91 @@ function AboutUs() {
         </div>
       <ParallaxLayer offset={5}>
       <div className="chat">
-        <form className="input-form" onSubmit={handleSubmit}>
-          <label>
-            <div>Where are you traveling to?</div>
-            <div>
-            <input
-              className='destination-input'
-              type='text'
-              name='destination'
-              placeholder='Enter a Location'
-              value={destination}
-              onChange={handleDestinationChange}
-              required
-            />
-            </div>
-          </label>
-          {error && <p className="error-message">{error}</p>} {/* Display error message if the destination is not valid */}
-          <br />
-          <label>
-            <div>When are you going?</div>
-            <div className="datepicker-container">
-            <DatePicker 
-            className="datepicker"
-            placeholderText='Start Date'
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            selectsStart
-            startDate={startDate}
-            endDate={endDate}
-            required
-            />
-            </div>
-            <div className="datepicker-container">
-            <DatePicker 
-            className="datepicker"
-            placeholderText='End Date'
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-            selectsEnd
-            startDate={startDate}
-            endDate={endDate}
-            minDate={startDate}
-            required
-            />
-            </div>
-          </label>
-          <br />
-          <button type="submit" className="submitbutton">Submit</button>
-        </form>
-        {parsedData && (
-          <div className="text-container">
-            <div classNam="text-size">
-              <h2>Itinerary</h2>
-              {parsedData.itinerary.map((day, index) => (
-                <div key={index}>
-                  <h3><strong>{day.date}</strong></h3>
-                  {day.activities.map((activity, idx) => (
-                    <p key={idx}>{activity}</p>
-                  ))}
-                </div>
-              ))}
+        <div className="chat-container">
+          <form className="input-form" onSubmit={handleSubmit}>
+            <label>
+              <div>Where are you traveling to?</div>
+              <div>
+              <input
+                className='destination-input'
+                type='text'
+                name='destination'
+                placeholder='Enter a Location'
+                value={destination}
+                onChange={handleDestinationChange}
+                required
+              />
               </div>
-          </div>
-        )}
-        {previousResponses.length > 0 && (
-          <div className="text-container">
-            <div className="text-size">
-              <PreviousResponses responses={previousResponses} />
+            </label>
+            {error && <p className="error-message">{error}</p>} {/* Display error message if the destination is not valid */}
+            <br />
+            <label>
+              <div>When are you going?</div>
+              <div className="datepicker-container">
+              <DatePicker 
+              className="datepicker"
+              placeholderText='Start Date'
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              selectsStart
+              startDate={startDate}
+              endDate={endDate}
+              required
+              />
+              </div>
+              <div className="datepicker-container">
+              <DatePicker 
+              className="datepicker"
+              placeholderText='End Date'
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+              selectsEnd
+              startDate={startDate}
+              endDate={endDate}
+              minDate={startDate}
+              required
+              />
+              </div>
+            </label>
+            <br />
+            <button type="submit" className="submitbutton">Submit</button>
+          </form>
+          {parsedData && (
+            <div className="text-container">
+              <div classNam="text-size">
+                <h2>Itinerary</h2>
+                {parsedData.itinerary.map((day, index) => (
+                  <div key={index}>
+                    <h3><strong>{day.date}</strong></h3>
+                    {day.activities.map((activity, idx) => (
+                      <p key={idx}>{activity}</p>
+                    ))}
+                  </div>
+                ))}
+                </div>
             </div>
-          </div>
-        )}
-        <AdditionalInformationForm
-          formSubmitted={formSubmitted}
-          handleFormSubmit={handleFormSubmit}
-          userInput={userInput}
-          handleUserInputChange={handleUserInputChange}
-          newOutput={newOutput}
-          loading={loading}
-        />
+          )}
+          {previousResponses.length > 0 && (
+            <div className="text-container">
+              <div className="text-size">
+                <PreviousResponses responses={previousResponses} />
+              </div>
+            </div>
+          )}
+          <AdditionalInformationForm
+            formSubmitted={formSubmitted}
+            handleFormSubmit={handleFormSubmit}
+            userInput={userInput}
+            handleUserInputChange={handleUserInputChange}
+            newOutput={newOutput}
+            loading={loading}
+          />
+        </div>
       </div>
       <button onClick={saveChatHistory} className="submitbutton" >Download Chat History</button>
       </ParallaxLayer>
       </Parallax>
-    </div>
+      </div>
   );  
 }
 export default AboutUs;
