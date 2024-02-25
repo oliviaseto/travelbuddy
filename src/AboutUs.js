@@ -321,7 +321,7 @@ function AboutUs() {
         {newOutput && <div className="output">{newOutput}</div>} 
         {loading && <p>Loading...</p>}
       </div>
-      <button onClick={saveChatHistory}>Download Chat History</button>
+      <button onClick={saveChatHistory} className="submitbutton" >Download Chat History</button>
       </ParallaxLayer>
       </Parallax>
     </div>

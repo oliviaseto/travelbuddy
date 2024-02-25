@@ -96,7 +96,7 @@
   width: 79%;
   padding: 12px 20px;
   margin-top: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .datepicker:focus {
@@ -118,7 +118,9 @@
 
 .submitbutton:hover {
   background-color: #45a049; /* Darker green when hovered */
+  border: 1px solid rgb(55, 132, 59);
   cursor: pointer;
+  color: white;
 }
 
 .fade-in {
