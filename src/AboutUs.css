@@ -1,3 +1,24 @@
+::-webkit-scrollbar {
+  width: 12px; 
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #778061;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #778061;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #90ac74;
+  border-radius: 8px;
+}
+
 .AboutUs {
   background-image: url("/public/images/ContinentMap.png");
   /* background-size: 1300px 2000px; */
@@ -30,9 +51,16 @@
 .text-container {
   display: flex;
   flex-direction: column;
+  padding: 20px 0 20px;
   min-width:70vw;
   background-color:rgba(255, 255, 255, 0.558);
   margin: 50px 0 50px;
+}
+
+.about-text {
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
+  text-shadow: darkolivegreen 1px 0 10px;
 }
   
 .left-text {
