@@ -49,18 +49,20 @@ function useFadeInEffect() {
 function AboutUs() {
   const [chatHistory, setChatHistory] = useState([]);
   const [destination, setDestination] = useState(""); 
-  const [startDate, setStartDate] = useState(new Date()); // State for DatePicker
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(null); // State for DatePicker
+  const [endDate, setEndDate] = useState(null);
   const [error,setError] = useState("");
-
   const [loading, setLoading] = useState(false);
   const [parsedData, setParsedData] = useState(null);
+  const [userInput, setUserInput] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
 
   const handleDestinationChange = (event) => {
     setDestination(event.target.value); 
   };
+  
   const validateDestination = () => {
     // You can implement your validation logic here
     // For example, check if the destination is in a predefined list of valid destinations
@@ -103,6 +105,7 @@ function AboutUs() {
       setParsedData(parsedData);
       console.log(parsedData);
       addMessage("assistant", data);
+      setFormSubmitted(true);
     } catch (error) {
       console.error('Error:', error);
       setError("Error occurred while fetching data. Please try again.");
@@ -161,6 +164,10 @@ function AboutUs() {
     return { itinerary, packingGuide };
   };
 
+  const handleUserInputChange = (event) => {
+    setUserInput(event.target.value);
+  };
+  
   useFadeInEffect();
   return (
     <div className="AboutUs">
@@ -192,12 +199,13 @@ function AboutUs() {
             <div>Where are you traveling to?</div>
             <div>
             <input
-              className='destination_input'
+              className='destination-input'
               type='text'
               name='destination'
-              placeholder=''
+              placeholder='Enter a Location'
               value={destination}
               onChange={handleDestinationChange}
+              required
             />
             </div>
           </label>
@@ -214,6 +222,7 @@ function AboutUs() {
             selectsStart
             startDate={startDate}
             endDate={endDate}
+            required
             />
             </div>
             <div className="datepicker-container">
@@ -226,12 +235,32 @@ function AboutUs() {
             startDate={startDate}
             endDate={endDate}
             minDate={startDate}
+            required
             />
             </div>
           </label>
           <br />
           <button type="submit" className="submitbutton">Submit</button>
         </form>
+        {formSubmitted && (
+          <form className="input-form" onSubmit={handleSubmit}>
+            <label>
+              <div>Any other travel information you're looking for?</div>
+              <div>
+                <input
+                  className='user-input'
+                  type='text'
+                  name='user-input'
+                  placeholder='Enter here'
+                  value={userInput} // Ensure value is bound to userInput state
+                  onChange={handleUserInputChange} // Handle onChange event correctly
+                />
+              </div>
+            </label>
+            <br />
+            <button type="submit" className="submitbutton">Submit</button>
+          </form>
+        )}
         {loading && <p>Loading...</p>}
         {parsedData && (
           <div className="parsed-data">
