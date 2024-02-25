@@ -10,14 +10,10 @@ function AboutUs() {
   const [destination, setDestination] = useState(""); 
   const [startDate, setStartDate] = useState(new Date()); // State for DatePicker
   const [endDate, setEndDate] = useState(new Date());
-<<<<<<< HEAD
   const [error,setError] = useState("");
-
-=======
   const [loading, setLoading] = useState(false);
-  const [reply, setReply] = useState("");
   const [parsedData, setParsedData] = useState(null);
->>>>>>> 30b9bee38005fe055a9ba835a66b6fa5fa4ed658
+
 
   const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
 
@@ -56,14 +52,13 @@ function AboutUs() {
         max_tokens: 1000,
       });
       const data = response.choices[0].message.content;
-      setReply(data); 
       console.log(data);
       const parsedData = parseItineraryAndPackingGuide(data);
       setParsedData(parsedData);
       console.log(parsedData)
     } catch (error) {
       console.error('Error:', error);
-      setReply("Error occurred while fetching data. Please try again.");
+      setError("Error occurred while fetching data. Please try again.");
     } finally {
       setLoading(false); 
     }
@@ -152,7 +147,7 @@ function AboutUs() {
         {loading && <p>Loading...</p>}
         {parsedData && (
           <div className="parsed-data">
-            <div>
+            <div className="text-container">
               <h2>Itinerary</h2>
               {parsedData.itinerary.map((day, index) => (
                 <div key={index}>
