@@ -177,6 +177,7 @@ function AboutUs() {
         <form className="input-form" onSubmit={handleSubmit}>
           <label>
             <div>Where are you traveling to?</div>
+            <div>
             <input
               className='destination_input'
               type='text'
@@ -185,11 +186,13 @@ function AboutUs() {
               value={destination}
               onChange={handleDestinationChange}
             />
+            </div>
           </label>
           {error && <p className="error-message">{error}</p>} {/* Display error message if the destination is not valid */}
           <br />
           <label>
             <div>When are you going?</div>
+            <div>
             <DatePicker 
             className="datepicker"
             placeholderText='Start Date'
@@ -209,6 +212,7 @@ function AboutUs() {
             endDate={endDate}
             minDate={startDate}
             />
+            </div>
           </label>
           <br />
           <button type="submit" className="submitbutton">Submit</button>
