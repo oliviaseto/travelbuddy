@@ -51,6 +51,7 @@
 .text-container {
   display: flex;
   flex-direction: column;
+  padding: 20px 0 20px;
   min-width:70vw;
   background-color:rgba(255, 255, 255, 0.558);
   margin: 50px 0 50px;
