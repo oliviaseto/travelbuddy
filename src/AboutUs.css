@@ -1,3 +1,24 @@
+::-webkit-scrollbar {
+  width: 12px; 
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #778061;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #778061;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #90ac74;
+  border-radius: 8px;
+}
+
 .AboutUs {
   background-image: url("/public/images/ContinentMap.png");
   /* background-size: 1300px 2000px; */
@@ -30,8 +51,16 @@
 .text-container {
   display: flex;
   flex-direction: column;
+  padding: 20px 0 20px;
   min-width:70vw;
   background-color:rgba(255, 255, 255, 0.558);
+  margin: 50px 0 50px;
+}
+
+.about-text {
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
+  text-shadow: darkolivegreen 1px 0 10px;
 }
   
 .left-text {
@@ -68,7 +97,12 @@
   margin-top:auto;
 }
 
-.parsed-data {
+.chat-container {
+  height: 70vh; /* Adjust the height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.text-size {
   font-size: 14px;
 }
 
@@ -79,6 +113,13 @@
 .destination-input, .user-input {
   padding: 12px 20px;
   margin: 15px 0;
+  box-sizing: border-box;
+}
+
+.user-input {
+  padding: 12px 20px;
+  margin-top: 15px;
+  margin-bottom: -8px;
   box-sizing: border-box;
 }
 
@@ -96,7 +137,7 @@
   width: 79%;
   padding: 12px 20px;
   margin-top: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .datepicker:focus {
@@ -112,13 +153,15 @@
   margin-top: 30px;
   padding: 10px 20px;
   border-radius: 2px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   transition: all .25s ease-out;
 }
 
 .submitbutton:hover {
   background-color: #45a049; /* Darker green when hovered */
+  border: 1px solid rgb(55, 132, 59);
   cursor: pointer;
+  color: white;
 }
 
 .fade-in {
