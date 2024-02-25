@@ -303,7 +303,9 @@ function AboutUs() {
             </div>
           </div>
         )}
-        <PreviousResponses responses={previousResponses} />
+        <div className="text-container">
+          <PreviousResponses responses={previousResponses} />
+        </div>
         <AdditionalInformationForm
           formSubmitted={formSubmitted}
           handleFormSubmit={handleFormSubmit}

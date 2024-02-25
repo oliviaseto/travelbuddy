@@ -22,7 +22,7 @@ function AdditionalInformationForm({ formSubmitted, handleFormSubmit, userInput,
           <button type="submit" className="submitbutton">Submit</button>
         </form>
       )}
-      {newOutput && <div className="output">{newOutput}</div>}
+      {/* {newOutput && <div className="output">{newOutput}</div>} */}
       {loading && <p>Loading...</p>}
     </>
   );
