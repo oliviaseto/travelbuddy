@@ -176,7 +176,7 @@ function AboutUs() {
       <div className="chat">
         <form className="input-form" onSubmit={handleSubmit}>
           <label>
-            Where are you traveling to?
+            <div>Where are you traveling to?</div>
             <input
               className='destination_input'
               type='text'
@@ -189,7 +189,7 @@ function AboutUs() {
           {error && <p className="error-message">{error}</p>} {/* Display error message if the destination is not valid */}
           <br />
           <label>
-            When are you going?
+            <div>When are you going?</div>
             <DatePicker 
             className="datepicker"
             placeholderText='Start Date'

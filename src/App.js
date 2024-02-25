@@ -1,5 +1,4 @@
 import './App.css';
-import AboutUs from './AboutUs';
 import React, { useState, useEffect } from 'react';
 
 function useFadeInEffect() {
