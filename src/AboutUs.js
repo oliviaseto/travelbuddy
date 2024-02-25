@@ -130,13 +130,38 @@ function AboutUs() {
   const filename = `${pdfName}.pdf`;
 
   const pdf = new jsPDF();
+  let yPosition = 10; // Initial y-coordinate position
+
 
     chatHistory.forEach((message, index) => {
     const text = `${message.role}: ${message.content}`;
     const maxWidth = 180;
     const lines = pdf.splitTextToSize(text, maxWidth);
-    pdf.text(lines, 10, 10 + index * 10);
-  });
+    const lineHeight = 10; // Assuming 10 units per line
+  
+      lines.forEach(line => {
+        // Check if adding the text would exceed the page height
+        if (yPosition + lineHeight > pdf.internal.pageSize.height) {
+          // Start a new page
+          pdf.addPage();
+          yPosition = 10; // Reset y-coordinate position
+        }
+  
+        // Add the line with appropriate y-coordinate spacing
+        pdf.text(line, 10, yPosition);
+        yPosition += lineHeight; // Increment y-coordinate for next line
+      });
+  
+      // Add additional spacing between messages
+      yPosition += lineHeight; 
+  
+      // If it's a user message (prompt question), add more spacing after the prompt
+      if (message.role === 'user') {
+        yPosition += lineHeight * 2; // Add more spacing after prompt
+      }
+    });
+    // pdf.text(lines, 10, 10 + index * 10);
+
   pdf.save(filename);
   
 };
@@ -144,6 +169,9 @@ const handleSaveChatHistory = () => {
   saveChatHistory();
   setChatHistory([]); // Move this line outside of saveChatHistory
 };
+  
+   
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
