@@ -53,7 +53,6 @@ function AboutUs() {
   const [endDate, setEndDate] = useState(new Date());
   const [error,setError] = useState("");
 
-=======
   const [loading, setLoading] = useState(false);
   const [parsedData, setParsedData] = useState(null);
 
