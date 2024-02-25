@@ -1,26 +1,19 @@
-/* Add this to your AboutUs.css or create a new CSS file */
-/* Customize the scrollbar */
 ::-webkit-scrollbar {
-  width: 12px; /* Set the width of the scrollbar */
+  width: 12px; 
   border-radius: 8px;
 }
-
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #778061;
 }
 
-/* Handle on drag */
 ::-webkit-scrollbar-thumb:active {
   background: #778061;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #90ac74;
   border-radius: 8px;
@@ -61,6 +54,11 @@
   min-width:70vw;
   background-color:rgba(255, 255, 255, 0.558);
   margin: 50px 0 50px;
+}
+
+.about-text {
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
 }
   
 .left-text {

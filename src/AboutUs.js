@@ -218,16 +218,16 @@ function AboutUs() {
         </ParallaxLayer>
         <div className="text-container">
             <ParallaxLayer offset={1} speed={0.5} factor={0.5}>
-              <p>Traveling soon? Don't have time <br />to plan an itinerary?</p>
+              <p className="about-text">Traveling soon? Don't have time <br />to plan an itinerary?</p>
             </ParallaxLayer>
             <ParallaxLayer offset={2} speed={0.5}factor={0.5}>
-              <p>Presenting, your own <br />personal travel itinerary planner, <br />powered by AI.</p>
+              <p className="about-text">Presenting, your own <br />personal travel itinerary planner, <br />powered by AI.</p>
             </ParallaxLayer>
             <ParallaxLayer offset={3} speed={0.5}factor={0.5}>
-              <p>To get started, please enter your <br />destination, as well as your vacation dates.</p>
+              <p className="about-text">To get started, please enter your <br />destination, as well as your vacation dates.</p>
             </ParallaxLayer>
             <ParallaxLayer offset={4} speed={0.5}factor={0.5}>
-              <p>We will generate a customized itinerary,<br />packing guide, estimated costs, etc.<br />as you continue to tell us your vacation <br />desires.</p>
+              <p className="about-text">We will generate a customized itinerary,<br />packing guide, estimated costs, etc.<br />as you continue to tell us your vacation <br />desires.</p>
             </ParallaxLayer>
         </div>
       <ParallaxLayer offset={5}>
