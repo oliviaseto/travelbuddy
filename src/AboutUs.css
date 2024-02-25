@@ -1,6 +1,3 @@
-
-
-
 .AboutUs {
   background-image: url("/public/images/ContinentMap.png");
   /* background-size: 1300px 2000px; */
@@ -94,7 +91,7 @@
   width: 100%;
 }
 
-.destination_input {
+.destination_input, .user_input {
   padding: 12px 20px;
   margin: 15px 0;
   box-sizing: border-box;
@@ -110,7 +107,6 @@
   padding: 12px 20px;
   margin: 15px 0;
 }
-
 
 .fade-in {
   opacity: 0;

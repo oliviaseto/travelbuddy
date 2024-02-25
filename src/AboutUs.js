@@ -55,12 +55,15 @@ function AboutUs() {
 
   const [loading, setLoading] = useState(false);
   const [parsedData, setParsedData] = useState(null);
+  const [userInput, setUserInput] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
 
   const handleDestinationChange = (event) => {
     setDestination(event.target.value); 
   };
+  
   const validateDestination = () => {
     // You can implement your validation logic here
     // For example, check if the destination is in a predefined list of valid destinations
@@ -103,6 +106,7 @@ function AboutUs() {
       setParsedData(parsedData);
       console.log(parsedData);
       addMessage("assistant", data);
+      setFormSubmitted(true);
     } catch (error) {
       console.error('Error:', error);
       setError("Error occurred while fetching data. Please try again.");
@@ -161,6 +165,10 @@ function AboutUs() {
     return { itinerary, packingGuide };
   };
 
+  const handleUserInputChange = (event) => {
+    setUserInput(event.target.value);
+  };
+  
   useFadeInEffect();
 
   return (
@@ -220,6 +228,25 @@ function AboutUs() {
           <br />
           <button type="submit" className="submitbutton">Submit</button>
         </form>
+        {formSubmitted && (
+          <form className="input-form" onSubmit={handleSubmit}>
+            <label>
+              <div>Any other travel information you're looking for?</div>
+              <div>
+                <input
+                  className='user_input'
+                  type='text'
+                  name='user-input'
+                  placeholder=''
+                  value={userInput} // Ensure value is bound to userInput state
+                  onChange={handleUserInputChange} // Handle onChange event correctly
+                />
+              </div>
+            </label>
+            <br />
+            <button type="submit" className="submitbutton">Submit</button>
+          </form>
+        )}
         {loading && <p>Loading...</p>}
         {parsedData && (
           <div className="parsed-data">
