@@ -93,7 +93,8 @@ function AboutUs() {
       
       const response = await client.chat.completions.create({
         model: "gpt-3.5-turbo",
-        messages:  [{"role": "system", "content": "You're an experienced travel advisor, well-versed in exploring the world's wonders and curating unforgettable experiences. Your expertise in understanding travel preferences and destinations allows you to craft tailored recommendation."}].concat(chatHistory),
+        messages:  [{"role": "system", "content": "You're an experienced travel advisor, well-versed in exploring the world's wonders and curating unforgettable experiences. Your expertise in understanding travel preferences and destinations allows you to craft tailored recommendation."},
+        {"role": "user", "content":`Can you plan me a vacation itinerary for ${destination} during ${startDate} and ${endDate}? Separate it by days. Include a packing guide as well for the expected weather during the intended stay.`}],
         max_tokens: 1000,
       });
       const data = response.choices[0].message.content;
