@@ -214,13 +214,6 @@ function AboutUs() {
     setPreviousResponses(updatedResponses);
   };
 
-  const handleScroll = async (event) => {
-    const { scrollTop, clientHeight, scrollHeight } = event.target;
-    if (scrollHeight - scrollTop === clientHeight) {
-      console.log('Load more content');
-    }
-  };
-
   useFadeInEffect();
 
   return (
