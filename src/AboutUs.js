@@ -216,7 +216,7 @@ function AboutUs() {
           <h1>About Us</h1>
         </div>
         </ParallaxLayer>
-        <div className="text-container">
+        <div>
             <ParallaxLayer offset={1} speed={0.5} factor={0.5}>
               <p className="about-text">Traveling soon? Don't have time <br />to plan an itinerary?</p>
             </ParallaxLayer>
