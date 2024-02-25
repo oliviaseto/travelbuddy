@@ -76,13 +76,13 @@
   width: 100%;
 }
 
-.destination_input, .user_input {
+.destination-input, .user-input {
   padding: 12px 20px;
   margin: 15px 0;
   box-sizing: border-box;
 }
 
-.destination_input:focus {
+.destination-input:focus, .user-input:focus {
   outline: none;
   border: 2px solid orange !important;
   box-shadow: 0 0 10px orange !important;
@@ -105,7 +105,7 @@
   box-shadow: 0 0 10px orange !important;
 }
 
-.submitbutton{
+.submitbutton {
   background: white;
   color: black;
   border: none;
@@ -116,7 +116,7 @@
   transition: all .25s ease-out;
 }
 
-.submitbutton:hover{
+.submitbutton:hover {
   background-color: #45a049; /* Darker green when hovered */
   cursor: pointer;
 }

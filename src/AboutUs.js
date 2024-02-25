@@ -187,7 +187,7 @@ function AboutUs() {
             <div>Where are you traveling to?</div>
             <div>
             <input
-              className='destination_input'
+              className='destination-input'
               type='text'
               name='destination'
               placeholder='Enter a Location'
@@ -236,10 +236,10 @@ function AboutUs() {
               <div>Any other travel information you're looking for?</div>
               <div>
                 <input
-                  className='user_input'
+                  className='user-input'
                   type='text'
                   name='user-input'
-                  placeholder=''
+                  placeholder='Enter here'
                   value={userInput} // Ensure value is bound to userInput state
                   onChange={handleUserInputChange} // Handle onChange event correctly
                 />
