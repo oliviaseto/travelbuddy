@@ -1,3 +1,25 @@
+::-webkit-scrollbar {
+  width: 12px;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #707e56;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #707e56;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7d8e63;
+  border-radius: 8px;
+}
+
 .AboutUs {
   background-image: url("/public/images/ContinentMap.png");
   /* background-size: 1300px 2000px; */
