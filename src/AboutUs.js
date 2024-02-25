@@ -130,6 +130,7 @@ function AboutUs() {
   const filename = `${pdfName}.pdf`;
 
   const pdf = new jsPDF();
+
     chatHistory.forEach((message, index) => {
     const text = `${message.role}: ${message.content}`;
     const maxWidth = 180;
@@ -137,7 +138,11 @@ function AboutUs() {
     pdf.text(lines, 10, 10 + index * 10);
   });
   pdf.save(filename);
-  setChatHistory([]);
+  
+};
+const handleSaveChatHistory = () => {
+  saveChatHistory();
+  setChatHistory([]); // Move this line outside of saveChatHistory
 };
 
   const handleSubmit = async (event) => {
@@ -323,7 +328,7 @@ function AboutUs() {
           />
         </div>
       </div>
-      <button onClick={saveChatHistory} className="submitbutton" >Download Chat History</button>
+      <button onClick={handleSaveChatHistory} className="submitbutton" >Download Chat History</button>
       </ParallaxLayer>
     </div>
     </Parallax>
