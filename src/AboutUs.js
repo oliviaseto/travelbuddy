@@ -291,7 +291,7 @@ function AboutUs() {
             <br />
             <button type="submit" className="submitbutton">Submit</button>
           </form>
-          {parsedData && parsedData.itinerary.length > 0 && (
+          {parsedData && (
             <div className="text-container">
               <div className="text-size">
                 <h2>Itinerary</h2>
