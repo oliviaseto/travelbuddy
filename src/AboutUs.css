@@ -96,6 +96,12 @@
   margin: 15px 0;
   box-sizing: border-box;
 }
+
+.destination_input:focus {
+  outline: none;
+  border: 2px solid orange !important;
+  box-shadow: 0 0 10px orange !important;
+}
  
 .datepicker-container {
   display: inline-block; 
@@ -106,6 +112,12 @@
   padding: 12px 20px;
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+.datepicker:focus {
+  outline: none;
+  border: 2px solid orange !important;
+  box-shadow: 0 0 10px orange !important;
 }
 
 .fade-in {
