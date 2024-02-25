@@ -14,7 +14,6 @@ function AboutUs() {
   const [loading, setLoading] = useState(false);
   const [parsedData, setParsedData] = useState(null);
 
-
   const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
 
   const handleDestinationChange = (event) => {
