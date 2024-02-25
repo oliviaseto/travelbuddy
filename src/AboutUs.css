@@ -95,18 +95,20 @@
 }
 
 .destination_input {
-  /* width: 50%; */
   padding: 12px 20px;
-  margin: 8px 0;
-  margin-left: 20px;
+  margin: 15px 0;
   box-sizing: border-box;
 }
  
+.datepicker-container {
+  display: inline-block;
+  margin-right: 20px; 
+}
+
 .datepicker {
   width: 100%;
   padding: 12px 20px;
-  margin-left: 20px;
-  box-sizing: border-box;
+  margin: 15px 0;
 }
 
 

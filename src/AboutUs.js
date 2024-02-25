@@ -193,7 +193,7 @@ function AboutUs() {
           <br />
           <label>
             <div>When are you going?</div>
-            <div>
+            <div className="datepicker-container">
             <DatePicker 
             className="datepicker"
             placeholderText='Start Date'
@@ -203,6 +203,8 @@ function AboutUs() {
             startDate={startDate}
             endDate={endDate}
             />
+            </div>
+            <div className="datepicker-container">
             <DatePicker 
             className="datepicker"
             placeholderText='End Date'
