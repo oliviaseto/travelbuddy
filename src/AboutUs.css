@@ -32,6 +32,7 @@
   flex-direction: column;
   min-width:70vw;
   background-color:rgba(255, 255, 255, 0.558);
+  margin: 50px 0 50px;
 }
   
 .left-text {
@@ -82,6 +83,13 @@
   box-sizing: border-box;
 }
 
+.user-input {
+  padding: 12px 20px;
+  margin-top: 15px;
+  margin-bottom: -8px;
+  box-sizing: border-box;
+}
+
 .destination-input:focus, .user-input:focus {
   outline: none;
   border: 2px solid orange !important;
@@ -112,7 +120,7 @@
   margin-top: 30px;
   padding: 10px 20px;
   border-radius: 2px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   transition: all .25s ease-out;
 }
 
