@@ -49,10 +49,9 @@ function useFadeInEffect() {
 function AboutUs() {
   const [chatHistory, setChatHistory] = useState([]);
   const [destination, setDestination] = useState(""); 
-  const [startDate, setStartDate] = useState(new Date()); // State for DatePicker
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(null); // State for DatePicker
+  const [endDate, setEndDate] = useState(null);
   const [error,setError] = useState("");
-
   const [loading, setLoading] = useState(false);
   const [parsedData, setParsedData] = useState(null);
   const [userInput, setUserInput] = useState("");
@@ -191,9 +190,10 @@ function AboutUs() {
               className='destination_input'
               type='text'
               name='destination'
-              placeholder=''
+              placeholder='Enter a Location'
               value={destination}
               onChange={handleDestinationChange}
+              required
             />
             </div>
           </label>
@@ -210,6 +210,7 @@ function AboutUs() {
             selectsStart
             startDate={startDate}
             endDate={endDate}
+            required
             />
             </div>
             <div className="datepicker-container">
@@ -222,6 +223,7 @@ function AboutUs() {
             startDate={startDate}
             endDate={endDate}
             minDate={startDate}
+            required
             />
             </div>
           </label>
