@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker'; // Import DatePicker
 import 'react-datepicker/dist/react-datepicker.css'; // Import CSS for DatePicker
 import { OpenAI } from 'openai';
 import jsPDF from 'jspdf';
-
+import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 const OPENAI_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
 function useFadeInEffect() {
@@ -206,25 +206,37 @@ function AboutUs() {
   };
 
   useFadeInEffect();
-
   return (
     <div className="AboutUs">
-      <div className="About-content">
-        <h1>About Us</h1>
-        <div className="text-container">
-          <p className="left-text fade-in">Traveling soon? Don't have time <br />to plan an itinerary?</p>
-          <p className="right-text fade-in">Presenting, your own <br />personal travel itinerary planner, <br />powered by AI.</p>
-          <p className="left-text fade-in">To get started, please enter your <br />destination, as well as your vacation dates.</p>
-          <p className="right-text no-margin fade-in">We will generate a customized itinerary,<br />packing guide, estimated costs, etc.<br />as you continue to tell us your vacation <br />desires.</p>
+      <Parallax pages={7}>
+        <ParallaxLayer offset={0}>
+        <div className="About-content">
+
+          <h1>About Us</h1>
         </div>
-      </div>
+        </ParallaxLayer>
+        <div className="text-container">
+            <ParallaxLayer offset={1} speed={0.5} factor={0.5}>
+              <p>Traveling soon? Don't have time <br />to plan an itinerary?</p>
+            </ParallaxLayer>
+            <ParallaxLayer offset={2} speed={0.5}factor={0.5}>
+              <p>Presenting, your own <br />personal travel itinerary planner, <br />powered by AI.</p>
+            </ParallaxLayer>
+            <ParallaxLayer offset={3} speed={0.5}factor={0.5}>
+              <p>To get started, please enter your <br />destination, as well as your vacation dates.</p>
+            </ParallaxLayer>
+            <ParallaxLayer offset={4} speed={0.5}factor={0.5}>
+              <p>We will generate a customized itinerary,<br />packing guide, estimated costs, etc.<br />as you continue to tell us your vacation <br />desires.</p>
+            </ParallaxLayer>
+        </div>
+      <ParallaxLayer offset={5}>
       <div className="chat">
         <form className="input-form" onSubmit={handleSubmit}>
           <label>
             <div>Where are you traveling to?</div>
             <div>
             <input
-              className='destination_input'
+              className='destination-input'
               type='text'
               name='destination'
               placeholder='Enter a Location'
@@ -293,10 +305,10 @@ function AboutUs() {
               <div>Any other travel information you're looking for?</div>
               <div>
                 <input
-                  className='user_input'
+                  className='user-input'
                   type='text'
                   name='user-input'
-                  placeholder=''
+                  placeholder='Enter here'
                   value={userInput} // Ensure value is bound to userInput state
                   onChange={handleUserInputChange} // Handle onChange event correctly
                 />
@@ -310,6 +322,8 @@ function AboutUs() {
         {loading && <p>Loading...</p>}
       </div>
       <button onClick={saveChatHistory}>Download Chat History</button>
+      </ParallaxLayer>
+      </Parallax>
     </div>
   );  
 }
