@@ -1,4 +1,4 @@
-# how are you brewin'?
+# TravelBuddy
 Your personal travel itinerary planner, powered by AI.
 
 Our inspiration for TravelBuddy stems from the challenges we faced when planning trips ourselves. We found the process daunting, from budgeting accommodations to ensuring we didn't miss out on any must-see attractions. We wanted to develop a tool that would simplify travel planning and provide users with tailored recommendations.
