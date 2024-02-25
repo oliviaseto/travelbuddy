@@ -36,8 +36,6 @@
   box-shadow: 0 0 20px white; /* Add box shadow for additional glow effect */
   cursor: pointer;
   transition: color .5s ease-in-out, box-shadow .5s ease-in-out, background-color .5s ease-in-out, border-color .5s ease-in-out;
-
-
 }
 
 .fade-in {
