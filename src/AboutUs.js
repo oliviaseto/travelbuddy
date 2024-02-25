@@ -187,7 +187,6 @@ function AboutUs() {
             </div>
           </div>
         )}  
-        {reply && <p className="reply">{reply}</p>}
       </div>
       <button onClick={saveChatHistory}>Download Chat History</button>
     </div>
