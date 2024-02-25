@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker'; // Import DatePicker
 import 'react-datepicker/dist/react-datepicker.css'; // Import CSS for DatePicker
 import { OpenAI } from 'openai';
+import jsPDF from 'jspdf';
 
 const OPENAI_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
@@ -46,13 +47,14 @@ function useFadeInEffect() {
 }
 
 function AboutUs() {
+  const [chatHistory, setChatHistory] = useState([]);
   const [destination, setDestination] = useState(""); 
   const [startDate, setStartDate] = useState(new Date()); // State for DatePicker
   const [endDate, setEndDate] = useState(new Date());
   const [error,setError] = useState("");
 
+=======
   const [loading, setLoading] = useState(false);
-  const [reply, setReply] = useState("");
   const [parsedData, setParsedData] = useState(null);
 
   const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
@@ -73,6 +75,9 @@ function AboutUs() {
     }
   };
   
+  const addMessage = (role, content) => {
+    setChatHistory((prevChatHistory) => [...prevChatHistory, { role, content }]);
+  };
 
   const callOpenAIAPI = async () => {
     if (!validateDestination()) {
@@ -83,27 +88,49 @@ function AboutUs() {
     setLoading(true);
 
     try {
+      //const userQuestion = `Can you plan me a vacation itinerary for ${destination} during ${startDate} and ${endDate}? Separate it by days. Include a packing guide as well for the expected weather during the intended stay.`;
+
+      addMessage("user", "You're an experienced travel advisor, well-versed in exploring the world's wonders and curating unforgettable experiences. Your expertise in understanding travel preferences and destinations allows you to craft tailored recommendation.");
+      addMessage("user", "You're an experienced travel advisor, well-versed in exploring the world's wonders and curating unforgettable experiences. Your expertise in understanding travel preferences and destinations allows you to craft tailored recommendation.");
       const response = await client.chat.completions.create({
         model: "gpt-3.5-turbo",
-        messages: [
-          {"role": "system", "content": "You're an experienced travel advisor, well-versed in exploring the world's wonders and curating unforgettable experiences. Your expertise in understanding travel preferences and destinations allows you to craft tailored recommendation."},
-          {"role": "user", "content": `Can you plan me a vacation itinerary for ${destination} during ${startDate} and ${endDate}? Separate the itinerary by days. Include an overall packing guide for the expected weather during the intended stay, not per day.`}
-        ],
+        messages: chatHistory,
         max_tokens: 1000,
       });
       const data = response.choices[0].message.content;
-      setReply(data); 
       console.log(data);
       const parsedData = parseItineraryAndPackingGuide(data);
       setParsedData(parsedData);
-      console.log(parsedData)
+      console.log(parsedData);
+      addMessage("assistant", data);
     } catch (error) {
       console.error('Error:', error);
-      setReply("Error occurred while fetching data. Please try again.");
+      setError("Error occurred while fetching data. Please try again.");
     } finally {
       setLoading(false); 
     }
   };
+
+  const saveChatHistory = () => {
+    const pdfName = window.prompt('Enter PDF name (without extension):');
+
+  if (!pdfName) {
+    // User canceled or entered an empty name
+    return;
+  }
+
+  const filename = `${pdfName}.pdf`;
+
+  const pdf = new jsPDF();
+    chatHistory.forEach((message, index) => {
+    const text = `${message.role}: ${message.content}`;
+    const maxWidth = 180;
+    const lines = pdf.splitTextToSize(text, maxWidth);
+    pdf.text(lines, 10, 10 + index * 10);
+  });
+  pdf.save(filename);
+  setChatHistory([]);
+};
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -190,7 +217,7 @@ function AboutUs() {
         {loading && <p>Loading...</p>}
         {parsedData && (
           <div className="parsed-data">
-            <div>
+            <div className="text-container">
               <h2>Itinerary</h2>
               {parsedData.itinerary.map((day, index) => (
                 <div key={index}>
@@ -202,8 +229,9 @@ function AboutUs() {
               ))}
             </div>
           </div>
-        )}
+        )}  
       </div>
+      <button onClick={saveChatHistory}>Download Chat History</button>
     </div>
   );  
 }

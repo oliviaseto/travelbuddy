@@ -22,7 +22,6 @@
   font-weight: bold;
 }
 
-
 .About-content {
   margin-top:-70vh;
   color:black;
@@ -70,6 +69,10 @@
 .chat{
   color: orange;
   margin-top:auto;
+}
+
+.parsed-data {
+  font-size: 14px;
 }
 
 .submitbutton{
