@@ -1,4 +1,6 @@
 import './AboutUs.css';
+import AdditionalInformationForm from './AdditionalInformationForm';
+import PreviousResponses from './PreviousResponses';
 import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker'; // Import DatePicker
 import 'react-datepicker/dist/react-datepicker.css'; // Import CSS for DatePicker
@@ -56,7 +58,7 @@ function AboutUs() {
   const [parsedData, setParsedData] = useState(null);
   const [userInput, setUserInput] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [previousOutput, setPreviousOutput] = useState([]);
+  const [previousResponses, setPreviousResponses] = useState([]);
   const [newOutput, setNewOutput] = useState("");
 
   const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
@@ -197,12 +199,18 @@ function AboutUs() {
       addMessage("assistant", data);
       setFormSubmitted(true);
       setNewOutput(data);
+      handleNewResponse(userInput, data);
     } catch (error) {
       console.error('Error:', error);
       setError("Error occurred while fetching data. Please try again.");
     } finally {
       setLoading(false); 
     }
+  };
+
+  const handleNewResponse = (question, response) => {
+    const updatedResponses = [...previousResponses, { question, response }];
+    setPreviousResponses(updatedResponses);
   };
 
   useFadeInEffect();
@@ -295,27 +303,15 @@ function AboutUs() {
             </div>
           </div>
         )}
-        {formSubmitted && (
-          <form className="input-form" onSubmit={handleFormSubmit}>
-            <label>
-              <div>Any other travel information you're looking for?</div>
-              <div>
-                <input
-                  className='user-input'
-                  type='text'
-                  name='user-input'
-                  placeholder='Enter here'
-                  value={userInput} // Ensure value is bound to userInput state
-                  onChange={handleUserInputChange} // Handle onChange event correctly
-                />
-              </div>
-            </label>
-            <br />
-            <button type="submit" className="submitbutton">Submit</button>
-          </form>
-        )}
-        {newOutput && <div className="output">{newOutput}</div>} 
-        {loading && <p>Loading...</p>}  
+        <PreviousResponses responses={previousResponses} />
+        <AdditionalInformationForm
+          formSubmitted={formSubmitted}
+          handleFormSubmit={handleFormSubmit}
+          userInput={userInput}
+          handleUserInputChange={handleUserInputChange}
+          newOutput={newOutput}
+          loading={loading}
+        />
       </div>
       <button onClick={saveChatHistory} className="submitbutton" >Download Chat History</button>
       </ParallaxLayer>
