@@ -87,13 +87,13 @@ function AboutUs() {
     setLoading(true);
 
     try {
-      //const userQuestion = `Can you plan me a vacation itinerary for ${destination} during ${startDate} and ${endDate}? Separate it by days. Include a packing guide as well for the expected weather during the intended stay.`;
+      const userQuestion = `Can you plan me a vacation itinerary for ${destination} during ${startDate} and ${endDate}? Separate it by days. Include a packing guide as well for the expected weather during the intended stay.`;
 
-      addMessage("user", "You're an experienced travel advisor, well-versed in exploring the world's wonders and curating unforgettable experiences. Your expertise in understanding travel preferences and destinations allows you to craft tailored recommendation.");
-      addMessage("user", "You're an experienced travel advisor, well-versed in exploring the world's wonders and curating unforgettable experiences. Your expertise in understanding travel preferences and destinations allows you to craft tailored recommendation.");
+      addMessage("user", userQuestion);
+      
       const response = await client.chat.completions.create({
         model: "gpt-3.5-turbo",
-        messages: chatHistory,
+        messages:  [{"role": "system", "content": "You're an experienced travel advisor, well-versed in exploring the world's wonders and curating unforgettable experiences. Your expertise in understanding travel preferences and destinations allows you to craft tailored recommendation."}].concat(chatHistory),
         max_tokens: 1000,
       });
       const data = response.choices[0].message.content;
@@ -177,6 +177,7 @@ function AboutUs() {
         <form className="input-form" onSubmit={handleSubmit}>
           <label>
             <div>Where are you traveling to?</div>
+            <div>
             <input
               className='destination_input'
               type='text'
@@ -185,11 +186,13 @@ function AboutUs() {
               value={destination}
               onChange={handleDestinationChange}
             />
+            </div>
           </label>
           {error && <p className="error-message">{error}</p>} {/* Display error message if the destination is not valid */}
           <br />
           <label>
             <div>When are you going?</div>
+            <div>
             <DatePicker 
             className="datepicker"
             placeholderText='Start Date'
@@ -209,6 +212,7 @@ function AboutUs() {
             endDate={endDate}
             minDate={startDate}
             />
+            </div>
           </label>
           <br />
           <button type="submit" className="submitbutton">Submit</button>
