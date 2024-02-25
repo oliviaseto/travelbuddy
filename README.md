@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# how are you brewin'?
+Your personal travel itinerary planner, powered by AI.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Our inspiration for TravelBuddy stems from the challenges we faced when planning trips ourselves. We found the process daunting, from budgeting accommodations to ensuring we didn't miss out on any must-see attractions. We wanted to develop a tool that would simplify travel planning and provide users with tailored recommendations.
 
-## Available Scripts
+Made for WiCS @ UVA's Hack the Map, a 24 hour hackathon for people of all backgrounds, especially first-time hackers and those underrepresented in computer science.
 
-In the project directory, you can run:
+Check it out here: https://usetravelbuddy.netlify.app/
 
-### `npm start`
+## Key Features
+🗺️ Personalized Itineraries: TravelBuddy creates customized itineraries tailored to your destination, travel dates, and preferences, ensuring a unique travel experience.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🤖 AI-Powered Recommendations: Leveraging the power of artificial intelligence, TravelBuddy suggests the best attractions, accommodations, and activities based on your interests and budget.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+💼 Save and Share: Save your itinerary for future reference or share it with friends and fellow travelers, making it easy to collaborate and plan together.
 
-### `npm test`
+## Built With
+* HTML
+* CSS
+* JavaScript
+* React
+* OpenAI API
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Installation and Setup Steps (for local development)
+* Clone this repository: git clone https://github.com/oliviaseto/travelbuddy.git
+* Navigate to the project directory: cd travelbuddy
+* Install dependencies using npm: npm install
+* Start the development server: npm start
+* Open your web browser and navigate to http://localhost:3000 to access TravelBuddy.
+  
+## Authors
+Kelly Gu, Edison Huang, Olivia Seto, and Alisha Qian.
