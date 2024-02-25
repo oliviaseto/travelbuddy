@@ -192,7 +192,7 @@ function AboutUs() {
               <p>We will generate a customized itinerary,<br />packing guide, estimated costs, etc.<br />as you continue to tell us your vacation <br />desires.</p>
             </ParallaxLayer>
         </div>
-      <ParallaxLayer offset={5}>
+        </Parallax>
       <div className="chat">
         <form className="input-form" onSubmit={handleSubmit}>
           <label>
@@ -279,8 +279,7 @@ function AboutUs() {
         )}  
       </div>
       <button onClick={saveChatHistory}>Download Chat History</button>
-      </ParallaxLayer>
-      </Parallax>
+
     </div>
   );  
 }
