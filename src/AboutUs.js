@@ -56,6 +56,8 @@ function AboutUs() {
   const [parsedData, setParsedData] = useState(null);
   const [userInput, setUserInput] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [previousOutput, setPreviousOutput] = useState([]);
+  const [newOutput, setNewOutput] = useState("");
 
   const client = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
 
@@ -168,7 +170,43 @@ function AboutUs() {
     setUserInput(event.target.value);
   };
   
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    setFormSubmitted(true);
+    await callOpenAIAPINewQuestion();
+  };
+
+  const callOpenAIAPINewQuestion = async () => {
+    console.log("Calling the OpenAI API");
+
+    setLoading(true);
+
+    try {
+      const userQuestion = userInput;
+
+      addMessage("user", userQuestion);
+
+      const response = await client.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages:  [{"role": "system", "content": "You're an experienced travel advisor, well-versed in exploring the world's wonders and curating unforgettable experiences. Your expertise in understanding travel preferences and destinations allows you to craft tailored recommendation."},
+        {"role": "user", "content":userInput}],
+        max_tokens: 1000,
+      });
+      const data = response.choices[0].message.content;
+      console.log(data);
+      addMessage("assistant", data);
+      setFormSubmitted(true);
+      setNewOutput(data);
+    } catch (error) {
+      console.error('Error:', error);
+      setError("Error occurred while fetching data. Please try again.");
+    } finally {
+      setLoading(false); 
+    }
+  };
+
   useFadeInEffect();
+
   return (
     <div className="AboutUs">
       <Parallax pages={7}>
@@ -242,8 +280,23 @@ function AboutUs() {
           <br />
           <button type="submit" className="submitbutton">Submit</button>
         </form>
+        {parsedData && (
+          <div className="parsed-data">
+            <div className="text-container">
+              <h2>Itinerary</h2>
+              {parsedData.itinerary.map((day, index) => (
+                <div key={index}>
+                  <h3><strong>{day.date}</strong></h3>
+                  {day.activities.map((activity, idx) => (
+                    <p key={idx}>{activity}</p>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         {formSubmitted && (
-          <form className="input-form" onSubmit={handleSubmit}>
+          <form className="input-form" onSubmit={handleFormSubmit}>
             <label>
               <div>Any other travel information you're looking for?</div>
               <div>
@@ -261,22 +314,8 @@ function AboutUs() {
             <button type="submit" className="submitbutton">Submit</button>
           </form>
         )}
-        {loading && <p>Loading...</p>}
-        {parsedData && (
-          <div className="parsed-data">
-            <div className="text-container">
-              <h2>Itinerary</h2>
-              {parsedData.itinerary.map((day, index) => (
-                <div key={index}>
-                  <h3><strong>{day.date}</strong></h3>
-                  {day.activities.map((activity, idx) => (
-                    <p key={idx}>{activity}</p>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}  
+        {newOutput && <div className="output">{newOutput}</div>} 
+        {loading && <p>Loading...</p>}  
       </div>
       <button onClick={saveChatHistory} className="submitbutton" >Download Chat History</button>
       </ParallaxLayer>
