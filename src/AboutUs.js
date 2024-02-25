@@ -291,9 +291,9 @@ function AboutUs() {
             <br />
             <button type="submit" className="submitbutton">Submit</button>
           </form>
-          {parsedData && (
+          {parsedData && parsedData.itinerary.length > 0 && (
             <div className="text-container">
-              <div classNam="text-size">
+              <div className="text-size">
                 <h2>Itinerary</h2>
                 {parsedData.itinerary.map((day, index) => (
                   <div key={index}>
@@ -303,7 +303,7 @@ function AboutUs() {
                     ))}
                   </div>
                 ))}
-                </div>
+              </div>
             </div>
           )}
           {previousResponses.length > 0 && (
