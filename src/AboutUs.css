@@ -72,21 +72,6 @@
   font-size: 14px;
 }
 
-.submitbutton{
-  background-color: white;
-  color: black;
-  border: none;
-  margin-top: 30px;
-  padding: 10px 20px;
-  border-radius: 2px;
-  margin-bottom: 20px;
-}
-
-.submitbutton:hover{
-  background-color: #45a049; /* Darker green when hovered */
-  cursor: pointer;
-}
-
 .input-form {
   width: 100%;
 }
@@ -118,6 +103,25 @@
   outline: none;
   border: 2px solid orange !important;
   box-shadow: 0 0 10px orange !important;
+}
+
+.submitbutton{
+  background: linear-gradient(to right, #45a049 50%, white 50%);
+  background-size: 210% 100%;
+  background-position: right bottom;
+  color: black;
+  border: none;
+  margin-top: 30px;
+  padding: 10px 20px;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  transition: all .25s ease-out;
+}
+
+.submitbutton:hover{
+  background-color: #45a049; /* Darker green when hovered */
+  background-position: left bottom;
+  cursor: pointer;
 }
 
 .fade-in {
