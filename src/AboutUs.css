@@ -15,12 +15,10 @@
   color: white;
 }
 
-
 .About-content {
-    margin-top:-110vh;
-    color:black;
-    position: absolute;
-
+  margin-top:-110vh;
+  color:black;
+  position: absolute;
 }
 
 .text-container {
@@ -58,6 +56,10 @@
 .chat{
   color: orange;
   margin-top:auto;
+}
+
+.parsed-data {
+  font-size: 14px;
 }
 
 .submitbutton{
