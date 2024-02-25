@@ -224,7 +224,7 @@ function AboutUs() {
   useFadeInEffect();
 
   return (
-    <Parallax pages={5}>
+    <Parallax pages={2}>
     <div className="AboutUs">
       
         {/* <ParallaxLayer offset={0}> */}

@@ -43,7 +43,7 @@
 
 .About-content {
     margin-bottom:auto;
-    color:black;
+    color:rgb(11, 68, 20);
     z-index:99999;
 } 
 
@@ -55,6 +55,9 @@
   min-width:70vw;
   background-color:rgba(255, 255, 255, 0.558);
   margin: 50px 0 50px;
+}
+.text-container p{
+    color: rgb(9, 80, 12);
 }
 
 .about-text {
@@ -93,7 +96,7 @@
 }
 
 .chat{
-  color: orange;
+  color: rgb(23, 81, 55);
   margin-top:auto;
 }
 
@@ -125,8 +128,8 @@
 
 .destination-input:focus, .user-input:focus {
   outline: none;
-  border: 2px solid orange !important;
-  box-shadow: 0 0 10px orange !important;
+  border: 2px solid #45a049 !important;
+  box-shadow: 0 0 10px #45a049 !important;
 }
  
 .datepicker-container {
@@ -142,8 +145,8 @@
 
 .datepicker:focus {
   outline: none;
-  border: 2px solid orange !important;
-  box-shadow: 0 0 10px orange !important;
+  border: 2px solid #45a049 !important;
+  box-shadow: 0 0 10px #45a049 !important;
 }
 
 .submitbutton {
