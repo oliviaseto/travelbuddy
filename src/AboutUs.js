@@ -330,7 +330,7 @@ function AboutUs() {
       <button onClick={saveChatHistory} className="submitbutton" >Download Chat History</button>
       </ParallaxLayer>
       </Parallax>
-      </div>
+    </div>
   );  
 }
 export default AboutUs;
