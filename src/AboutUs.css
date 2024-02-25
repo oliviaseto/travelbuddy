@@ -22,8 +22,8 @@
 
 .About-content {
     margin-bottom:auto;
-    position: relative;
     color:black;
+    z-index:99999;
 } 
 
 

@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css'; // Import CSS for DatePicke
 import { OpenAI } from 'openai';
 import jsPDF from 'jspdf';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
+
 const OPENAI_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
 function useFadeInEffect() {
@@ -170,29 +171,31 @@ function AboutUs() {
   
   useFadeInEffect();
   return (
+    <Parallax pages={5}>
     <div className="AboutUs">
-      <Parallax pages={7}>
-        <ParallaxLayer offset={0}>
+      
+        {/* <ParallaxLayer offset={0}> */}
         <div className="About-content">
 
           <h1>About Us</h1>
         </div>
-        </ParallaxLayer>
+        {/* </ParallaxLayer> */}
+
         <div className="text-container">
-            <ParallaxLayer offset={1} speed={0.5} factor={0.5}>
+            <ParallaxLayer offset={0.3} speed={2}factor={8}>
               <p>Traveling soon? Don't have time <br />to plan an itinerary?</p>
             </ParallaxLayer>
-            <ParallaxLayer offset={2} speed={0.5}factor={0.5}>
+            <ParallaxLayer offset={0.5} speed={2}factor={8}>
               <p>Presenting, your own <br />personal travel itinerary planner, <br />powered by AI.</p>
             </ParallaxLayer>
-            <ParallaxLayer offset={3} speed={0.5}factor={0.5}>
+            <ParallaxLayer offset={0.7} speed={2}factor={8}>
               <p>To get started, please enter your <br />destination, as well as your vacation dates.</p>
             </ParallaxLayer>
-            <ParallaxLayer offset={4} speed={0.5}factor={0.5}>
+            <ParallaxLayer offset={0.9} speed={2}factor={8}>
               <p>We will generate a customized itinerary,<br />packing guide, estimated costs, etc.<br />as you continue to tell us your vacation <br />desires.</p>
             </ParallaxLayer>
         </div>
-      <ParallaxLayer offset={5}>
+      <ParallaxLayer offset={1.2}>
       <div className="chat">
         <form className="input-form" onSubmit={handleSubmit}>
           <label>
@@ -280,8 +283,9 @@ function AboutUs() {
       </div>
       <button onClick={saveChatHistory}>Download Chat History</button>
       </ParallaxLayer>
-      </Parallax>
     </div>
+    </Parallax>
+
   );  
 }
 export default AboutUs;
