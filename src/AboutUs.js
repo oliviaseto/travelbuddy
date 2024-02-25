@@ -289,8 +289,8 @@ function AboutUs() {
           <button type="submit" className="submitbutton">Submit</button>
         </form>
         {parsedData && (
-          <div className="parsed-data">
-            <div className="text-container">
+          <div className="text-container">
+            <div classNam="text-size">
               <h2>Itinerary</h2>
               {parsedData.itinerary.map((day, index) => (
                 <div key={index}>
@@ -300,12 +300,16 @@ function AboutUs() {
                   ))}
                 </div>
               ))}
+              </div>
+          </div>
+        )}
+        {previousResponses.length > 0 && (
+          <div className="text-container">
+            <div className="text-size">
+              <PreviousResponses responses={previousResponses} />
             </div>
           </div>
         )}
-        <div className="text-container">
-          <PreviousResponses responses={previousResponses} />
-        </div>
         <AdditionalInformationForm
           formSubmitted={formSubmitted}
           handleFormSubmit={handleFormSubmit}
